@@ -1,24 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
   "functions": {
-    "api/**/*.php": {
+    "api/index.php": {
       "runtime": "vercel-php@0.9.0"
     }
-  },
-
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/Assets/(.*)",
-      "dest": "/Assets/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
-    }
-  ]
+  }
 }
