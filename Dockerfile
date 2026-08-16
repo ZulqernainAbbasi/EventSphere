@@ -1,11 +1,16 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
+# Install MySQL extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-COPY . /var/www/html/
+# Copy EventSphere
+COPY . /app
 
-RUN chown -R www-data:www-data /var/www/html
+# Use the application directory
+WORKDIR /app
 
-EXPOSE 80
+# Railway provides PORT
+ENV PORT=8080
 
-CMD ["apache2-foreground"]
+# Start PHP built-in web server
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT} -t /app"]
